@@ -6027,7 +6027,7 @@ flexibility(document.documentElement);
                                                                             data-widget_type="text-editor.default">
                                                                             <div class="elementor-widget-container">
                                                                                 <p>Bank BNI</p>
-                                                                                <p>No. Rekening 096768xxx</p>
+                                                                                <p id="rekening">No. Rekening 096768xxx</p>
                                                                                 <p>a.n<b> Reza Apriyatama</b></p>
                                                                             </div>
                                                                         </div>
@@ -6081,36 +6081,21 @@ flexibility(document.documentElement);
                                                                                     }
                                                                                 </style>
 
-                                                                                <script>
-                                                                                    function copyText(el) {
-                                                                                        var content = jQuery(el)
-                                                                                            .siblings(
-                                                                                                'div.copy-content')
-                                                                                            .html()
-                                                                                        var temp = jQuery("<textarea>");
-                                                                                        jQuery("body").append(temp);
-                                                                                        temp.val(content.replace(
-                                                                                                /<br ?\/?>/g, "\n"))
-                                                                                            .select();
-                                                                                        document.execCommand("copy");
-                                                                                        temp.remove();
-                                                                                        var text = jQuery(el).html()
-                                                                                        jQuery(el).html(jQuery(el).data(
-                                                                                            'message'))
-                                                                                        var counter = 0;
-                                                                                        var interval = setInterval(
-                                                                                            function () {
-                                                                                                counter++;
-                                                                                                if (counter == 1) {
-                                                                                                    jQuery(el).html(
-                                                                                                        text)
-                                                                                                }
-                                                                                            }, 500);
-                                                                                    }
-                                                                                </script>
+                                                                            <script>
+                                                                                function copyText() {
+                                                                                    // Ambil teks dari elemen dengan id 'rekening'
+                                                                                    var rekeningText = document.getElementById("rekening").textContent;
 
+                                                                                    // Gunakan API Clipboard untuk menyalin teks
+                                                                                    navigator.clipboard.writeText(rekeningText).then(() => {
+                                                                                        alert("Nomor rekening telah disalin: " + rekeningText);
+                                                                                    }).catch(err => {
+                                                                                        console.error('Gagal menyalin teks ke clipboard:', err);
+                                                                                    });
+                                                                                }
+                                                                            </script>
                                                                             </div>
-                                                                        </div>
+                                                                            </div>
                                                                         <div class="elementor-element elementor-element-4c3101b4 elementor-widget-divider--view-line jltma-glass-effect-no elementor-widget elementor-widget-divider"
                                                                             data-id="4c3101b4"
                                                                             data-element_type="widget"
